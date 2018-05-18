@@ -12,17 +12,24 @@ class CompanyVC: UIViewController{
     
     @IBOutlet var tableView: UITableView!
     var companyList : [String]?
+    var companyProduct : [String]?
     var productViewController : ProductVC?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.companyList = ["Apple mobile devices","Samsung mobile devices"]
+        self.companyList = ["Apple Inc (APPL)","Google (GOOG)","Twitter (TWTR)","Tesla (TSLA)"]
+        self.companyProduct = ["apple.png","google.png","twitter.png","tesla.png"]
         
         //create edit button
         let editBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEditMode))
         self.navigationItem.rightBarButtonItem = editBarButton
         
-        self.title = "Mobile Device Makers"
+//        color
+        self.navigationController?.navigationBar.barTintColor = UIColor .green
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.orange]
+
+        
+        self.title = "Stock Tracker"
         // Do any additional setup after loading the view.
     }
 
@@ -31,7 +38,7 @@ class CompanyVC: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    func toggleEditMode() {
+    @objc func toggleEditMode() {
         if self.navigationItem.rightBarButtonItem?.title == "Edit" {
             self.tableView.setEditing(true, animated: true)
             self.navigationItem.rightBarButtonItem?.title = "Done"
@@ -46,9 +53,6 @@ class CompanyVC: UIViewController{
 
 extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let companyCount = self.companyList?.count {
@@ -65,6 +69,11 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     */
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     /*
     // Override to support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -77,11 +86,39 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     */
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+        self.companyList?.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            
+        }
+        
+        
+    }
+    
+   
+    
+    
+    
     /*
     // Override to support rearranging the table view
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     }
     */
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let items = companyList?[sourceIndexPath.row]
+        companyList?.remove(at: sourceIndexPath.row)
+        companyList?.insert(items!, at: destinationIndexPath.row)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     /*
     // Override to support conditional rearranging of the table view.
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -90,10 +127,20 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     }
     */
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool{
+        return true
+    }
+    
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) ??
         UITableViewCell(style: .subtitle, reuseIdentifier: CellIdentifier)
+        cell.imageView?.image = UIImage(named: companyProduct![indexPath.row])
         
         if let currentCompanyName = self.companyList?[indexPath.row] {
             cell.textLabel?.text = currentCompanyName
@@ -107,11 +154,23 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.productViewController = ProductVC()
-        if indexPath.row == 0 {
-            self.productViewController?.title = "Apple Mobile Devices"
-        } else {
-            self.productViewController?.title = "Samsung Mobile Devices"
-        }
+        
+        self.productViewController?.title = companyList?[indexPath.row]
+        
+//        if indexPath.row == 0 {
+//            self.productViewController?.title = "Apple Inc(APPL)"
+//        } else if indexPath.row == 1{
+//            self.productViewController?.title = "Google (GOOG)"
+//        }
+//       else if indexPath.row == 2 {
+//            self.productViewController?.title = "Twitter (TWTR)"
+//        }
+//
+//        else if indexPath.row == 3 {
+//            self.productViewController?.title = "Tesla (TSLA)"
+//        }
+        
+        
         self.navigationController?.pushViewController(self.productViewController!, animated: true)
     }
  
