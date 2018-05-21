@@ -62,6 +62,9 @@ setweb()
         else if self.title == "Galaxy S4" {
             self.productUrl = "https://www.rentalcars.com"
         }
+        else if self.title == "Galaxy Note"{
+            self.productUrl = "https://www.samsung.com"
+        }
         
        setweb()
         
