@@ -12,44 +12,51 @@ class ProductVC: UIViewController {
     
     
     @IBOutlet var tableView: UITableView!
-    var products: [String]?
-    var productImage : [String]?
+    
+    var products = [Product]()
+    
+    
+//    var productImage : [String]?
     var webView = VCtrlWebView()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let dao = DAO.shared
+
         
-        self.productImage = ["apple.png","google.png","twitter.png","tesla.png"]
+        
+  //      self.productImage = ["apple.png","google.png","twitter.png","tesla.png"]
         let editBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEditMode))
         self.navigationItem.rightBarButtonItem = editBarButton
         // Do any additional setup after loading the view.
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-      
+//
         
-        if self.title == "Apple Inc (APPL)" {
-            self.products = ["iPad", "iPod Touch", "iPhone"]
-            self.productImage = ["apple.png","apple.png","apple.png"]
-        } else if self.title == "Google (GOOG)" {
-            self.products = ["Galaxy S4", "Galaxy Note", "Galaxy Tab"]
-            self.productImage = ["google.png","google.png","google.png"]
-        }
-        else if self.title == "Twitter (TWTR)" {
-            self.products = ["tweet", "access", "display"]
-            self.productImage = ["twitter.png","twitter.png","twitter.png"]
-        }
-        else if self.title == "Tesla (TSLA)" {
-            self.products = ["battery", "model", "speed"]
-            self.productImage = ["tesla.png","tesla.png","tesla.png"]
-        }
-        self.tableView.reloadData()
-        
+//        if self.title == "Apple Inc (APPL)" {
+//            self.products = ["iPad", "iPod Touch", "iPhone"]
+//            self.productImage = ["apple.png","apple.png","apple.png"]
+//        } else if self.title == "Google (GOOG)" {
+//            self.products = ["Galaxy S4", "Galaxy Note", "Galaxy Tab"]
+//            self.productImage = ["google.png","google.png","google.png"]
+//        }
+//        else if self.title == "Twitter (TWTR)" {
+//            self.products = ["tweet", "access", "display"]
+//            self.productImage = ["twitter.png","twitter.png","twitter.png"]
+//        }
+//        else if self.title == "Tesla (TSLA)" {
+//            self.products = ["battery", "model", "speed"]
+//            self.productImage = ["tesla.png","tesla.png","tesla.png"]
+//        }
+ //       self.tableView.reloadData()
+
     }
 
     
@@ -84,8 +91,8 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        // Return the number of rows in the section.
-        if let productCount = self.products?.count {
-            return productCount
+        if products.count > 0 {
+            return products.count
         } else {
             print("unknown number of rows... \"products\" property is nil!")
             return 0
@@ -97,9 +104,9 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
 
         let CellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: CellIdentifier)
-        cell.imageView?.image = UIImage(named: productImage![indexPath.row])
+        cell.imageView?.image = UIImage(named: products[indexPath.row].productImg)
         //configure the cell
-        cell.textLabel?.text = self.products?[indexPath.row]
+        cell.textLabel?.text = self.products[indexPath.row].productName
         
         
         return cell
@@ -136,17 +143,17 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
      */
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     
+        
         if editingStyle == .delete{
-            self.products?.remove(at: indexPath.row)
+            self.products.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         else if editingStyle == .insert{
-
-
+            
+            
         }
         
-        }
+    }
      
     
      
@@ -163,9 +170,9 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
     */
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     
-    let items = products?[sourceIndexPath.row]
-        products?.remove(at: sourceIndexPath.row)
-        products?.insert(items!, at: destinationIndexPath.row)
+    let items = products[sourceIndexPath.row]
+        products.remove(at: sourceIndexPath.row)
+        products.insert(items, at: destinationIndexPath.row)
     
     }
     
@@ -214,9 +221,9 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
         
         //print(self.products![indexPath.row])
         
-        let prodName = self.products![indexPath.row]
+        let url = self.products[indexPath.row].productUrl
         
-        self.webView.title = prodName
+        self.webView.productUrl = url
         
         self.navigationController?.pushViewController(self.webView, animated: true)
         

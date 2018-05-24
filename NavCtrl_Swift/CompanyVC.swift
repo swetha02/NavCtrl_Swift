@@ -8,18 +8,35 @@
 
 import UIKit
 
-class CompanyVC: UIViewController{
+class CompanyVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
-    var companyList : [String]?
-    var companyProduct : [String]?
+    //
+//    var companyList : [String]?
+
+//    var companyImages : [String]()
+    
+    var companysList = [Company]()
+    
     var productViewController : ProductVC?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.companyList = ["Apple Inc (APPL)","Google (GOOG)","Twitter (TWTR)","Tesla (TSLA)"]
-        self.companyProduct = ["apple.png","google.png","twitter.png","tesla.png"]
         
+         
+        let dao = DAO.shared
+        
+        
+        
+        
+        dao.createCompanys()
+        companysList = dao.companysList
+        
+        
+//        self.companyList = ["Apple Inc (APPL)","Google (GOOG)","Twitter (TWTR)","Tesla (TSLA)"]
+//
+//        self.companyImages = ["apple.png","google.png","twitter.png","tesla.png"]
+//
         //create edit button
         let editBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEditMode))
         self.navigationItem.rightBarButtonItem = editBarButton
@@ -55,8 +72,8 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let companyCount = self.companyList?.count {
-            return companyCount
+        if companysList.count > 0 {
+            return companysList.count
         } else {
             print("unknown number of rows... companyList is nil!")
             return 0
@@ -88,7 +105,7 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-        self.companyList?.remove(at: indexPath.row)
+            self.companysList.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             
@@ -107,9 +124,9 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     }
     */
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let items = companyList?[sourceIndexPath.row]
-        companyList?.remove(at: sourceIndexPath.row)
-        companyList?.insert(items!, at: destinationIndexPath.row)
+        let items = companysList[sourceIndexPath.row]
+        companysList.remove(at: sourceIndexPath.row)
+        companysList.insert(items, at: destinationIndexPath.row)
         
     }
     
@@ -140,13 +157,10 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
         let CellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) ??
         UITableViewCell(style: .subtitle, reuseIdentifier: CellIdentifier)
-        cell.imageView?.image = UIImage(named: companyProduct![indexPath.row])
         
-        if let currentCompanyName = self.companyList?[indexPath.row] {
-            cell.textLabel?.text = currentCompanyName
-        } else {
-            cell.textLabel?.text = "?"
-        }
+        cell.imageView?.image = UIImage(named: companysList[indexPath.row].compImg)
+        cell.textLabel?.text = companysList[indexPath.row].compName
+ 
        return cell
     }
     
@@ -155,7 +169,12 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.productViewController = ProductVC()
         
-        self.productViewController?.title = companyList?[indexPath.row]
+        productViewController?.products = companysList[indexPath.row].products
+        
+        self.navigationController?.pushViewController(self.productViewController!, animated: true)
+
+        
+   //     self.productViewController?.title = companysList[indexPath.row]
         
 //        if indexPath.row == 0 {
 //            self.productViewController?.title = "Apple Inc(APPL)"
@@ -171,7 +190,6 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
 //        }
         
         
-        self.navigationController?.pushViewController(self.productViewController!, animated: true)
     }
  
 }
