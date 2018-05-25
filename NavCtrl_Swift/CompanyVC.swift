@@ -16,22 +16,20 @@ class CompanyVC: UIViewController {
 
 //    var companyImages : [String]()
     
-    var companysList = [Company]()
+   // var companysList = [Company]()
     
     var productViewController : ProductVC?
+    let  dao = DAO.shared
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         
-        let dao = DAO.shared
-        
-        
         
         
         dao.createCompanys()
-        companysList = dao.companysList
-        
+ //
         
 //        self.companyList = ["Apple Inc (APPL)","Google (GOOG)","Twitter (TWTR)","Tesla (TSLA)"]
 //
@@ -48,6 +46,13 @@ class CompanyVC: UIViewController {
         
         self.title = "Stock Tracker"
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        companysList = DAO.shared.companysList
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,8 +77,10 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if companysList.count > 0 {
-            return companysList.count
+        
+        
+        if dao.companysList.count > 0 {
+            return dao.companysList.count
         } else {
             print("unknown number of rows... companyList is nil!")
             return 0
@@ -105,7 +112,7 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            self.companysList.remove(at: indexPath.row)
+            dao.companysList.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             
@@ -124,9 +131,9 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     }
     */
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let items = companysList[sourceIndexPath.row]
-        companysList.remove(at: sourceIndexPath.row)
-        companysList.insert(items, at: destinationIndexPath.row)
+        let items = dao.companysList[sourceIndexPath.row]
+        dao.companysList.remove(at: sourceIndexPath.row)
+        dao.companysList.insert(items, at: destinationIndexPath.row)
         
     }
     
@@ -158,8 +165,8 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) ??
         UITableViewCell(style: .subtitle, reuseIdentifier: CellIdentifier)
         
-        cell.imageView?.image = UIImage(named: companysList[indexPath.row].compImg)
-        cell.textLabel?.text = companysList[indexPath.row].compName
+        cell.imageView?.image = UIImage(named: dao.companysList[indexPath.row].compImg)
+        cell.textLabel?.text = dao.companysList[indexPath.row].compName
  
        return cell
     }
@@ -169,7 +176,10 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.productViewController = ProductVC()
         
-        productViewController?.products = companysList[indexPath.row].products
+        
+        let company = dao.companysList[indexPath.row]
+        
+        productViewController?.company = company
         
         self.navigationController?.pushViewController(self.productViewController!, animated: true)
 

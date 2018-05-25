@@ -55,6 +55,21 @@ class DAO{
         tesla.products.append(teslamodel2)
         let teslamodel3  = Product(productName: "Model 3", productImg:"tesla.png", productTitle: "Tesla (TSLA)",productUrl:"https://www.tesla.com")
         tesla.products.append(teslamodel3)
+        
+        
+//        
+//        var products = apple.products
+//        print(apple.products.count)
+//        print(products.count)
+//        products.remove(at: 0)
+//        print(apple.products.count)
+//        print(products.count)
+//        apple.products.remove(at: 1)
+//        print(apple.products.count)
+//        print(products.count)
+
+        
+        
     }
     
 }

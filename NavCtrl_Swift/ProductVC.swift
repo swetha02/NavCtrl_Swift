@@ -15,6 +15,8 @@ class ProductVC: UIViewController {
     
     var products = [Product]()
     
+    var company: Company?
+    
     
 //    var productImage : [String]?
     var webView = VCtrlWebView()
@@ -23,7 +25,9 @@ class ProductVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dao = DAO.shared
+  //      self.products.remove(at: 1)
+        
+//        let dao = DAO.shared.companysList
 
         
         
@@ -37,7 +41,7 @@ class ProductVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+//        let dao = DAO.shared.companysList
 //
         
 //        if self.title == "Apple Inc (APPL)" {
@@ -91,8 +95,8 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        // Return the number of rows in the section.
-        if products.count > 0 {
-            return products.count
+        if company!.products.count > 0 {
+            return company!.products.count
         } else {
             print("unknown number of rows... \"products\" property is nil!")
             return 0
@@ -104,9 +108,9 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
 
         let CellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: CellIdentifier)
-        cell.imageView?.image = UIImage(named: products[indexPath.row].productImg)
+        cell.imageView?.image = UIImage(named: company!.products[indexPath.row].productImg)
         //configure the cell
-        cell.textLabel?.text = self.products[indexPath.row].productName
+        cell.textLabel?.text = self.company!.products[indexPath.row].productName
         
         
         return cell
@@ -145,7 +149,8 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete{
-            self.products.remove(at: indexPath.row)
+            self.company!.products.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         else if editingStyle == .insert{
@@ -170,9 +175,9 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
     */
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     
-    let items = products[sourceIndexPath.row]
-        products.remove(at: sourceIndexPath.row)
-        products.insert(items, at: destinationIndexPath.row)
+    let items = company!.products[sourceIndexPath.row]
+        company!.products.remove(at: sourceIndexPath.row)
+        company!.products.insert(items, at: destinationIndexPath.row)
     
     }
     
@@ -219,9 +224,8 @@ extension ProductVC: UITableViewDataSource, UITableViewDelegate {
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
-        //print(self.products![indexPath.row])
         
-        let url = self.products[indexPath.row].productUrl
+        let url = self.company!.products[indexPath.row].productUrl
         
         self.webView.productUrl = url
         
