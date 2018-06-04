@@ -13,7 +13,6 @@ class Company{
     let compImg:String
     var products:[Product]
     
-    
     init(compName:String,compImg:String) {
         self.compImg = compImg
         self.compName = compName
@@ -24,7 +23,7 @@ class Company{
 //protocol Companies {
 //    
 //}
-    
+
 
 
 

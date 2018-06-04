@@ -16,15 +16,17 @@ class ProductVC: UIViewController {
     var products = [Product]()
     
     var company: Company?
-    
+    var addvc : AddViewController?
+    var companyID: Int?
+    var addProdView:AddProductViewC?
     
 //    var productImage : [String]?
     var webView = VCtrlWebView()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
   //      self.products.remove(at: 1)
         
 //        let dao = DAO.shared.companysList
@@ -32,15 +34,25 @@ class ProductVC: UIViewController {
         
         
   //      self.productImage = ["apple.png","google.png","twitter.png","tesla.png"]
-        let editBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEditMode))
-        self.navigationItem.rightBarButtonItem = editBarButton
-        // Do any additional setup after loading the view.
+//        let editBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEditMode))
+//        self.navigationItem.rightBarButtonItem = editBarButton
+//
+        
+////        create add button
+        let addBarButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButtnAction))
+        self.navigationItem.rightBarButtonItem = addBarButton
+        
+}
+    @objc func addButtnAction(){
+       self.addProdView = AddProductViewC()
+        self.addProdView?.companyId = self.companyID
+        self.navigationController?.pushViewController(self.addProdView!, animated: true)
         
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        tableView.reloadData()
 //        let dao = DAO.shared.companysList
 //
         
@@ -68,7 +80,6 @@ class ProductVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     @objc func toggleEditMode() {
         if self.navigationItem.rightBarButtonItem?.title == "Edit" {

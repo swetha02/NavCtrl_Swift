@@ -13,7 +13,7 @@ class Product {
     let productImg:String
     let productUrl:String
     
-    init(productName:String,productImg:String,productTitle:String,productUrl:String) {
+    init(productName:String,productImg:String,productUrl:String) {
         self.productName = productName
         self.productImg = productImg
         self.productUrl = productUrl

@@ -17,19 +17,20 @@ class CompanyVC: UIViewController {
 //    var companyImages : [String]()
     
    // var companysList = [Company]()
-    
     var productViewController : ProductVC?
+    var addVc :AddViewController?
+    var prod : AddProductViewC?
     let  dao = DAO.shared
+    
+    
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         dao.createCompanys()
- //
+        
+
         
 //        self.companyList = ["Apple Inc (APPL)","Google (GOOG)","Twitter (TWTR)","Tesla (TSLA)"]
 //
@@ -37,16 +38,38 @@ class CompanyVC: UIViewController {
 //
         //create edit button
         let editBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEditMode))
-        self.navigationItem.rightBarButtonItem = editBarButton
-        
+        self.navigationItem.leftBarButtonItem = editBarButton
+       
 //        color
         self.navigationController?.navigationBar.barTintColor = UIColor .green
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.orange]
-
+        
+//        create add button
+        let addBarButton = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(addButtnAction))
+        self.navigationItem.rightBarButtonItem = addBarButton
+        
+        
         
         self.title = "Stock Tracker"
         // Do any additional setup after loading the view.
+        
+        }
+    
+    
+//  creating add button
+    
+    
+    @objc func addButtnAction(){
+        
+         self.addVc = AddViewController()
+        
+        self.navigationController?.pushViewController(self.addVc!, animated: true)
+
     }
+
+    
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,12 +84,12 @@ class CompanyVC: UIViewController {
     }
     
     @objc func toggleEditMode() {
-        if self.navigationItem.rightBarButtonItem?.title == "Edit" {
+        if self.navigationItem.leftBarButtonItem?.title == "Edit" {
             self.tableView.setEditing(true, animated: true)
-            self.navigationItem.rightBarButtonItem?.title = "Done"
+            self.navigationItem.leftBarButtonItem?.title = "Done"
         } else {
             self.tableView.setEditing(false, animated: true)
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
+            self.navigationItem.leftBarButtonItem?.title = "Edit"
         }
     }
 }
@@ -121,7 +144,7 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-   
+    
     
     
     
@@ -174,12 +197,15 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
     
     // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         self.productViewController = ProductVC()
+      //  self.productViewController?.title = "\(Date())"
         
         
         let company = dao.companysList[indexPath.row]
         
         productViewController?.company = company
+        productViewController?.companyID = indexPath.row
         
         self.navigationController?.pushViewController(self.productViewController!, animated: true)
 
