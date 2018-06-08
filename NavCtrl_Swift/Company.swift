@@ -11,11 +11,15 @@ class Company{
     
     let compName:String
     let compImg:String
+    let companyTicker: String
+    var companyPrice: String?
     var products:[Product]
-    
-    init(compName:String,compImg:String) {
+
+    init(compName:String,compImg:String, companyTicker: String,companyPrice:String) {
         self.compImg = compImg
         self.compName = compName
+        self.companyTicker = companyTicker
+        self.companyPrice = companyPrice
         self.products = [Product]()
         
     }

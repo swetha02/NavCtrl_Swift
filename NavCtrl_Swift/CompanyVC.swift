@@ -188,10 +188,23 @@ extension CompanyVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) ??
         UITableViewCell(style: .subtitle, reuseIdentifier: CellIdentifier)
         
-        cell.imageView?.image = UIImage(named: dao.companysList[indexPath.row].compImg)
-        cell.textLabel?.text = dao.companysList[indexPath.row].compName
- 
-       return cell
+        let currentCompany = dao.companysList[indexPath.row]
+        
+        if(currentCompany.companyPrice == "price"){
+            
+            StockDataService().stockPrice(company:currentCompany, tableView: tableView)
+            
+        }
+        
+        cell.imageView?.image = UIImage(named: currentCompany.compImg)
+        cell.textLabel?.text = "\(currentCompany.compName) (\(currentCompany.companyTicker))"
+        cell.detailTextLabel?.text = "\( currentCompany.companyPrice ?? "0.00")"
+        
+       
+        
+        return cell
+        
+        
     }
     
     

@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		86048FE920C08D6B00067668 /* secondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86048FE720C08D6B00067668 /* secondVC.swift */; };
-		86048FEA20C08D6B00067668 /* secondVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86048FE820C08D6B00067668 /* secondVC.xib */; };
 		860ECD1F20BF49E2002D60D9 /* AddProductViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860ECD1D20BF49E2002D60D9 /* AddProductViewC.swift */; };
 		860ECD2020BF49E2002D60D9 /* AddProductViewC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860ECD1E20BF49E2002D60D9 /* AddProductViewC.xib */; };
 		86202B2420B623C300AD9C6E /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86202B2320B623C300AD9C6E /* DAO.swift */; };
 		862C4F6620BDDD1C00AE6088 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C4F6520BDDD1C00AE6088 /* AddViewController.swift */; };
 		8666928E20AC9BD300527763 /* VCtrlWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8666928C20AC9BD300527763 /* VCtrlWebView.swift */; };
 		8666928F20AC9BD300527763 /* VCtrlWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8666928D20AC9BD300527763 /* VCtrlWebView.xib */; };
+		8684188D20C5D32D008DDCBC /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8684188C20C5D32D008DDCBC /* Stock.swift */; };
 		86AE517420B35DEE00F54E21 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AE517320B35DEE00F54E21 /* Company.swift */; };
 		86AE517820B368D200F54E21 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AE517720B368D200F54E21 /* Product.swift */; };
+		86DE273320C9C34400450DFA /* StockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE273220C9C34400450DFA /* StockVC.swift */; };
 		86ED9A2220BDE94E004D0C2D /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86ED9A2120BDE94E004D0C2D /* AddViewController.xib */; };
 		9EF237B11E5E351800FEFD4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF237B01E5E351800FEFD4F /* AppDelegate.swift */; };
 		9EF237B81E5E351800FEFD4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EF237B71E5E351800FEFD4F /* Assets.xcassets */; };
@@ -28,16 +28,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		86048FE720C08D6B00067668 /* secondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondVC.swift; sourceTree = "<group>"; };
-		86048FE820C08D6B00067668 /* secondVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = secondVC.xib; sourceTree = "<group>"; };
 		860ECD1D20BF49E2002D60D9 /* AddProductViewC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewC.swift; sourceTree = "<group>"; };
 		860ECD1E20BF49E2002D60D9 /* AddProductViewC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddProductViewC.xib; sourceTree = "<group>"; };
 		86202B2320B623C300AD9C6E /* DAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		862C4F6520BDDD1C00AE6088 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		8666928C20AC9BD300527763 /* VCtrlWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCtrlWebView.swift; sourceTree = "<group>"; };
 		8666928D20AC9BD300527763 /* VCtrlWebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VCtrlWebView.xib; sourceTree = "<group>"; };
+		8684188C20C5D32D008DDCBC /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		86AE517320B35DEE00F54E21 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		86AE517720B368D200F54E21 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		86DE273220C9C34400450DFA /* StockVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockVC.swift; sourceTree = "<group>"; };
 		86ED9A2120BDE94E004D0C2D /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
 		9EF237AD1E5E351800FEFD4F /* NavCtrl_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavCtrl_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF237B01E5E351800FEFD4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,8 +76,6 @@
 				86ED9A2120BDE94E004D0C2D /* AddViewController.xib */,
 				860ECD1D20BF49E2002D60D9 /* AddProductViewC.swift */,
 				860ECD1E20BF49E2002D60D9 /* AddProductViewC.xib */,
-				86048FE720C08D6B00067668 /* secondVC.swift */,
-				86048FE820C08D6B00067668 /* secondVC.xib */,
 			);
 			name = Add;
 			sourceTree = "<group>";
@@ -89,6 +87,15 @@
 				8666928D20AC9BD300527763 /* VCtrlWebView.xib */,
 			);
 			name = webView;
+			sourceTree = "<group>";
+		};
+		8684188B20C5D1E7008DDCBC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8684188C20C5D32D008DDCBC /* Stock.swift */,
+				86DE273220C9C34400450DFA /* StockVC.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		86AE516A20B34C4B00F54E21 /* Model */ = {
@@ -122,6 +129,7 @@
 				9EF237B01E5E351800FEFD4F /* AppDelegate.swift */,
 				86AE516A20B34C4B00F54E21 /* Model */,
 				862C4F5A20BDC4D800AE6088 /* Add */,
+				8684188B20C5D1E7008DDCBC /* API */,
 				9EF237CC1E5E35DB00FEFD4F /* CompanyViewController */,
 				8666928B20AC9B8E00527763 /* webView */,
 				86202B2220B623AC00AD9C6E /* DAO */,
@@ -222,7 +230,6 @@
 			files = (
 				860ECD2020BF49E2002D60D9 /* AddProductViewC.xib in Resources */,
 				86ED9A2220BDE94E004D0C2D /* AddViewController.xib in Resources */,
-				86048FEA20C08D6B00067668 /* secondVC.xib in Resources */,
 				9EF237CA1E5E35C000FEFD4F /* ProductVC.xib in Resources */,
 				9EF237BB1E5E351800FEFD4F /* LaunchScreen.storyboard in Resources */,
 				9EF237B81E5E351800FEFD4F /* Assets.xcassets in Resources */,
@@ -240,13 +247,14 @@
 			files = (
 				86AE517820B368D200F54E21 /* Product.swift in Sources */,
 				86AE517420B35DEE00F54E21 /* Company.swift in Sources */,
+				86DE273320C9C34400450DFA /* StockVC.swift in Sources */,
 				860ECD1F20BF49E2002D60D9 /* AddProductViewC.swift in Sources */,
 				862C4F6620BDDD1C00AE6088 /* AddViewController.swift in Sources */,
 				86202B2420B623C300AD9C6E /* DAO.swift in Sources */,
 				9EF237C91E5E35C000FEFD4F /* ProductVC.swift in Sources */,
-				86048FE920C08D6B00067668 /* secondVC.swift in Sources */,
 				8666928E20AC9BD300527763 /* VCtrlWebView.swift in Sources */,
 				9EF237C51E5E35AA00FEFD4F /* CompanyVC.swift in Sources */,
+				8684188D20C5D32D008DDCBC /* Stock.swift in Sources */,
 				9EF237B11E5E351800FEFD4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
