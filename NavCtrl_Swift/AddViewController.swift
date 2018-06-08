@@ -14,7 +14,9 @@ class AddViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var companyName: UITextField!
     @IBOutlet weak var companyTicker: UITextField!
     @IBOutlet weak var companyImageLink: UITextField!
-    
+    @IBOutlet var companyPrice: UILabel!
+
+
     
     @IBAction func save(_sender:AnyObject){
 //        print("save pressed")
@@ -33,9 +35,13 @@ class AddViewController: UIViewController ,UITextFieldDelegate{
             print("Company web is requared")
             return
         }
+        guard let companyPrice = companyPrice.text , companyPrice != "" else  {
+            print("price is required")
+        return
+        }
+//
+        let company = Company(compName: companyName, compImg: companyImageLink,companyTicker:companyTicker,companyPrice:companyPrice)
         
-        let company = Company(compName: companyName, compImg: companyImageLink)
-    
         DAO.shared.addCompany(company: company)
         self.navigationController?.popViewController(animated: true)
         
@@ -56,6 +62,12 @@ cleanTextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+
+        
+        
 
         let cancelBarButton = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem = cancelBarButton
@@ -75,7 +87,16 @@ cleanTextField()
         
         NotificationCenter.default.addObserver(self, selector: #selector(AddProductViewC.changeOrientation),name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
     @objc func changeOrientation(notification:NSNotification) {
         
         print("i know now that change Orientation happend")
@@ -152,7 +173,6 @@ cleanTextField()
       super .touchesBegan(touches, with: event)
         self.view.endEditing(true)
     }
-    
     
 
     override func didReceiveMemoryWarning() {

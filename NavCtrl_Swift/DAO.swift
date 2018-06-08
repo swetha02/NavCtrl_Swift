@@ -23,15 +23,15 @@ class DAO{
     }
     
     func createCompanys() {
-        let apple = Company(compName: "Apple Inc (APPL)", compImg:"apple.png" )
+        let apple = Company(compName: "Apple Inc", compImg:"apple.png", companyTicker: "AAPL",companyPrice:"price")
         
         companysList.append(apple)
         
-        let google = Company(compName: "Google (GOOG)", compImg: "google.png")
+        let google = Company(compName: "Google", compImg: "google.png", companyTicker: "GOOG",companyPrice:"price")
         companysList.append(google)
-        let twitter = Company(compName: "Twitter (TWTR)", compImg: "twitter.png")
+        let twitter = Company(compName: "Twitter", compImg: "twitter.png", companyTicker: "TWTR",companyPrice:"price")
         companysList.append(twitter)
-        let tesla = Company(compName:"Tesla (TSLA)" , compImg:"tesla.png" )
+        let tesla = Company(compName:"Tesla" , compImg:"tesla.png", companyTicker: "TSLA",companyPrice:"price")
         companysList.append(tesla)
         
         let ipad = Product(productName: "iPad", productImg: "apple.png", productUrl: "https://www.apple.com")
