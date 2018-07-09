@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="companyPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companyTicker" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="compImg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="compName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="company" inverseEntity="ProductEntity" syncable="YES"/>
+    </entity>
+    <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="productImg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="products" inverseEntity="CompanyEntity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CompanyEntity" positionX="270" positionY="-18" width="117" height="118"/>
+        <element name="ProductEntity" positionX="558" positionY="-6" width="128" height="103"/>
+    </elements>
+</model>

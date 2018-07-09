@@ -14,8 +14,7 @@ class AddViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var companyName: UITextField!
     @IBOutlet weak var companyTicker: UITextField!
     @IBOutlet weak var companyImageLink: UITextField!
-    @IBOutlet var companyPrice: UILabel!
-
+ 
 
     
     @IBAction func save(_sender:AnyObject){
@@ -35,17 +34,14 @@ class AddViewController: UIViewController ,UITextFieldDelegate{
             print("Company web is requared")
             return
         }
-        guard let companyPrice = companyPrice.text , companyPrice != "" else  {
-            print("price is required")
-        return
-        }
-//
-        let company = Company(compName: companyName, compImg: companyImageLink,companyTicker:companyTicker,companyPrice:companyPrice)
+       
+
+        let company = Company(compName: companyName, compImg: companyImageLink, companyTicker: companyTicker, companyPrice:"price")
         
         DAO.shared.addCompany(company: company)
         self.navigationController?.popViewController(animated: true)
         
- cleanTextField()
+        cleanTextField()
     }
     
     @IBAction func cancel(_sender:AnyObject){
@@ -69,8 +65,8 @@ cleanTextField()
         
         
 
-        let cancelBarButton = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(cancel))
-        self.navigationItem.leftBarButtonItem = cancelBarButton
+//        let cancelBarButton = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(cancel))
+//        self.navigationItem.leftBarButtonItem = cancelBarButton
 //        color
         self.navigationController?.navigationBar.barTintColor = UIColor .green
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.orange]
@@ -86,9 +82,35 @@ cleanTextField()
         NotificationCenter.default.addObserver(self, selector: #selector(AddProductViewC.UIKeyboardWillHide),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(AddProductViewC.changeOrientation),name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-
+        
+        
+        let customButton = UIButton()
+        customButton.setImage(UIImage.init(named:"backArrow.png"), for: .normal)
+        customButton.imageView?.contentMode = .scaleAspectFit
+        customButton.imageView?.tintColor = .white
+        customButton.addTarget(self, action: #selector(cancel(_sender:)), for: .touchUpInside)
+        
+        let barItem = barItemWithView(view: customButton, rect: CGRect(x: 0, y: 0, width: 30, height: 30))
+        self.navigationItem.leftBarButtonItem = barItem
+        
         
     }
+    
+    func barItemWithView(view: UIView, rect: CGRect) -> UIBarButtonItem {
+        let container = UIView(frame: rect)
+        container.addSubview(view)
+        view.frame = rect
+        return UIBarButtonItem(customView: container)
+        
+    }
+        
+        
+        
+        
+        
+
+        
+    
     
     
     

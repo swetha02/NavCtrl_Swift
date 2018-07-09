@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompanyVC" customModule="NavCtrl_Swift" customModuleProvider="target">
             <connections>
+                <outlet property="redoBtn" destination="pTb-zW-NUo" id="KJh-M6-eZQ"/>
                 <outlet property="tableView" destination="OL1-kY-Ffi" id="Fii-JW-foJ"/>
+                <outlet property="undoBtn" destination="pER-LP-KaP" id="jlo-j8-mqc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,22 +23,49 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OL1-kY-Ffi">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OL1-kY-Ffi">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="jxc-s4-bDF"/>
                         <outlet property="delegate" destination="-1" id="5aG-e3-gPo"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pER-LP-KaP">
+                    <rect key="frame" x="187.5" y="637" width="187.5" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="undo">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="UndoButtn:" destination="-1" eventType="touchUpInside" id="Ysr-UZ-RCl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTb-zW-NUo">
+                    <rect key="frame" x="0.0" y="637" width="187.5" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="redo">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="RedoButtn:" destination="-1" eventType="touchUpInside" id="d1b-W2-TjH"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="OL1-kY-Ffi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8Ou-dM-t2N"/>
-                <constraint firstItem="OL1-kY-Ffi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8ay-UQ-nsv"/>
-                <constraint firstAttribute="trailing" secondItem="OL1-kY-Ffi" secondAttribute="trailing" id="GBt-7V-LRC"/>
-                <constraint firstAttribute="bottom" secondItem="OL1-kY-Ffi" secondAttribute="bottom" id="usa-cZ-DrA"/>
+                <constraint firstItem="pTb-zW-NUo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L4N-cs-BE0"/>
+                <constraint firstItem="pER-LP-KaP" firstAttribute="width" secondItem="pTb-zW-NUo" secondAttribute="width" id="QXx-B0-PeK"/>
+                <constraint firstItem="pER-LP-KaP" firstAttribute="top" secondItem="OL1-kY-Ffi" secondAttribute="bottom" id="XmY-MQ-q1g"/>
+                <constraint firstItem="OL1-kY-Ffi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eBc-rI-Po0"/>
+                <constraint firstAttribute="bottom" secondItem="pTb-zW-NUo" secondAttribute="bottom" id="hmf-6t-yEm"/>
+                <constraint firstAttribute="trailing" secondItem="pER-LP-KaP" secondAttribute="trailing" id="oX5-Nr-MqO"/>
+                <constraint firstAttribute="bottom" secondItem="pER-LP-KaP" secondAttribute="bottom" id="p8Z-7S-cca"/>
+                <constraint firstItem="pTb-zW-NUo" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="pLK-J2-wOr"/>
+                <constraint firstAttribute="trailing" secondItem="OL1-kY-Ffi" secondAttribute="trailing" id="qL7-1T-GgO"/>
+                <constraint firstItem="OL1-kY-Ffi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vJD-d7-jRB"/>
             </constraints>
+            <point key="canvasLocation" x="33.5" y="96.5"/>
         </view>
     </objects>
 </document>

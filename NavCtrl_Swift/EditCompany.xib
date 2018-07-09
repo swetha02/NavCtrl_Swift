@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCompany" customModule="NavCtrl_Swift" customModuleProvider="target">
+            <connections>
+                <outlet property="editCompImg" destination="H7q-Hp-sNb" id="eW0-rS-f7d"/>
+                <outlet property="editCompName" destination="Tym-SB-mmS" id="six-gR-h3O"/>
+                <outlet property="editCompTikker" destination="iMn-rA-Q3E" id="WLu-Ty-81X"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="tgG-TN-zD7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tym-SB-mmS">
+                    <rect key="frame" x="37" y="144" width="301" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="company Tikker" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iMn-rA-Q3E">
+                    <rect key="frame" x="37" y="203" width="301" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="company Img" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H7q-Hp-sNb">
+                    <rect key="frame" x="37" y="262" width="301" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtT-Zu-RgX">
+                    <rect key="frame" x="137" y="342" width="101" height="30"/>
+                    <state key="normal" title="Delete">
+                        <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteEditCompany:" destination="-1" eventType="touchUpInside" id="JjG-XR-J04"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NtT-Zu-RgX" secondAttribute="trailing" constant="137" id="5vI-dX-fFC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iMn-rA-Q3E" secondAttribute="trailing" constant="37" id="8AI-xA-8xl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tym-SB-mmS" secondAttribute="trailing" constant="37" id="8xN-pI-irD"/>
+                <constraint firstItem="H7q-Hp-sNb" firstAttribute="top" secondItem="iMn-rA-Q3E" secondAttribute="bottom" constant="29" id="99L-r6-D6r"/>
+                <constraint firstItem="Tym-SB-mmS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="37" id="C4X-JP-UEK"/>
+                <constraint firstItem="H7q-Hp-sNb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="37" id="C6f-WA-4jr"/>
+                <constraint firstItem="NtT-Zu-RgX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="137" id="IsK-Ti-tPs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H7q-Hp-sNb" secondAttribute="trailing" constant="37" id="eqi-AJ-1md"/>
+                <constraint firstItem="Tym-SB-mmS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="124" id="g4s-iq-Rlq"/>
+                <constraint firstItem="NtT-Zu-RgX" firstAttribute="top" secondItem="H7q-Hp-sNb" secondAttribute="bottom" constant="50" id="kp3-BV-b6K"/>
+                <constraint firstItem="iMn-rA-Q3E" firstAttribute="top" secondItem="Tym-SB-mmS" secondAttribute="bottom" constant="29" id="nA9-Wd-gWW"/>
+                <constraint firstItem="iMn-rA-Q3E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="37" id="sdZ-GQ-5cp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="NtT-Zu-RgX" secondAttribute="bottom" constant="295" id="zhV-hb-VwZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="85.5"/>
+        </view>
+    </objects>
+</document>

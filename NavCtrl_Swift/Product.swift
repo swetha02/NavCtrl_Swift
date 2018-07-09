@@ -9,13 +9,16 @@
 import Foundation
 
 class Product {
-    let productName:String
-    let productImg:String
-    let productUrl:String
+    var productName:String
+    var productImg:String
+    var productUrl:String
+    
+    
     
     init(productName:String,productImg:String,productUrl:String) {
         self.productName = productName
         self.productImg = productImg
         self.productUrl = productUrl
+        
     }
 }

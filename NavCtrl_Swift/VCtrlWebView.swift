@@ -9,24 +9,73 @@
 import UIKit
 import WebKit
 
+
 class VCtrlWebView: UIViewController {
 
     @IBOutlet weak var web: WKWebView!
    
+    
+    var editProd = EditProduct()
     var productUrl : String?
 //    var productIMG : [String]?
+    var product: Product?
+    var companyId: Int?
+    var productId: Int?
+    
+    
+    
+    
+    @IBAction func Back(_sender:AnyObject){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 setweb()
         
-    }
-
-
-    @objc func toggleEditMode(){
+    self.title = "Product Link"
         
-    
+        //create edit button
+        let editBarButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonAction))
+        self.navigationItem.rightBarButtonItem = editBarButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        
+        
+//        backArrow
+        let customButton = UIButton()
+        customButton.setImage(UIImage.init(named:"backArrow.png"), for: .normal)
+        customButton.imageView?.contentMode = .scaleAspectFit
+        customButton.imageView?.tintColor = .white
+        customButton.addTarget(self, action: #selector(Back(_sender: )), for: .touchUpInside)
+        
+        let barItem = barItemWithView(view: customButton, rect: CGRect(x: 0, y: 0, width: 30, height: 30))
+        self.navigationItem.leftBarButtonItem = barItem
+        
+        
     }
     
+    func barItemWithView(view: UIView, rect: CGRect) -> UIBarButtonItem {
+        let container = UIView(frame: rect)
+        container.addSubview(view)
+        view.frame = rect
+        return UIBarButtonItem(customView: container)
+        
+    }
+    
+    
+    @objc func editButtonAction(){
+        
+        editProd.product = product
+        editProd.companyId = companyId
+        editProd.productID = productId
+    
+        navigationController?.pushViewController(editProd, animated: true)
+        
+    }
+ 
     
     func setweb(){
         

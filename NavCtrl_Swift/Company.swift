@@ -9,9 +9,9 @@
 import Foundation
 class Company{
     
-    let compName:String
-    let compImg:String
-    let companyTicker: String
+    var compName:String
+    var compImg:String
+    var companyTicker: String
     var companyPrice: String?
     var products:[Product]
 

@@ -38,7 +38,8 @@ class AddProductViewC: UIViewController,UITextFieldDelegate {
             print("imgUrl required")
             return
         }
-        let prod = Product(productName:productName,productImg:productURl, productUrl:productURl)
+        
+        let prod = Product(productName:productName,productImg:prodcutImg, productUrl:productURl)
         guard let companyId = companyId else {return}
         DAO.shared.addProducts(product: prod, companyId: companyId)
         self.navigationController?.popViewController(animated: true)
@@ -51,8 +52,8 @@ class AddProductViewC: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let backBarButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(Back))
-        self.navigationItem.leftBarButtonItem = backBarButton
+//        let backBarButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(Back))
+//        self.navigationItem.leftBarButtonItem = backBarButton
         //        color
         self.navigationController?.navigationBar.barTintColor = UIColor .green
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.orange]
@@ -60,7 +61,7 @@ class AddProductViewC: UIViewController,UITextFieldDelegate {
         let saveBarButton = UIBarButtonItem(title: "save", style: .plain, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = saveBarButton
         
-        self.title = "Add Product"
+        self.title = "Add product"
         
         NotificationCenter.default.addObserver(self, selector:#selector(AddProductViewC.keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -68,25 +69,55 @@ class AddProductViewC: UIViewController,UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(AddProductViewC.changeOrientation),name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
-
+        
+        let customButton = UIButton()
+        customButton.setImage(UIImage.init(named:"backArrow.png"), for: .normal)
+        customButton.imageView?.contentMode = .scaleAspectFit
+        customButton.imageView?.tintColor = .white
+        customButton.addTarget(self, action: #selector(Back(_sender: )), for: .touchUpInside)
+        
+        let barItem = barItemWithView(view: customButton, rect: CGRect(x: 0, y: 0, width: 30, height: 30))
+        self.navigationItem.leftBarButtonItem = barItem
+        
+        
     }
+
+    
+    func barItemWithView(view: UIView, rect: CGRect) -> UIBarButtonItem {
+        let container = UIView(frame: rect)
+        container.addSubview(view)
+        view.frame = rect
+        return UIBarButtonItem(customView: container)
+        
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
     
     @objc func changeOrientation(notification:NSNotification) {
         
         print("i know now that change Orientation happend")
     }
     
-      @objc func keyboardWillShow(notification:NSNotification) {
-    
+    @objc func keyboardWillShow(notification:NSNotification) {
+        
         moveTextField(textField: self.productViewUrl, moveDistance: -250, up: true)
         //self.view.frame.origin.y -= 200
+        
+    }
     
-       }
-    
-        @objc func UIKeyboardWillHide(notification:NSNotification) {
-            moveTextField(textField: self.productViewUrl, moveDistance: -250, up: false)
-            //self.view.frame.origin.y += 200
-        }
+    @objc func UIKeyboardWillHide(notification:NSNotification) {
+        moveTextField(textField: self.productViewUrl, moveDistance: -250, up: false)
+        //self.view.frame.origin.y += 200
+    }
     
     
     override func didReceiveMemoryWarning() {
